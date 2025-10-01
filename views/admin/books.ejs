@@ -1,0 +1,45 @@
+<%- include('../partials/header', { title: "Manage Books" }) %>
+    <%- include('../partials/navbar', { userType: "admin" }) %>
+
+        <h1>Books Management</h1>
+
+        <form action="/admin/books/search" method="GET">
+            <input type="text" name="query" placeholder="Search by title or ID..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>All Books</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(book=> { %>
+                    <tr>
+                        <td>
+                            <%= book.bookId %>
+                        </td>
+                        <td>
+                            <%= book.title %>
+                        </td>
+                        <td>
+                            <%= book.author %>
+                        </td>
+                        <td>
+                            <% if(book.isIssued) { %>
+                                ❌ Issued
+                                <% } else { %>
+                                    ✅ Available
+                                    <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+        <%- include('../partials/footer') %>

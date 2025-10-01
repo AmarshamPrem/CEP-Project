@@ -1,0 +1,54 @@
+<%- include('../partials/header', { title: "Request Book" }) %>
+    <%- include('../partials/navbar', { userType: "student" }) %>
+
+        <h1>Request a Book</h1>
+
+        <form action="/student/request" method="POST">
+            <label for="bookId">Book ID:</label>
+            <input type="text" id="bookId" name="bookId" required>
+
+            <label for="bookTitle">Book Title:</label>
+            <input type="text" id="bookTitle" name="bookTitle" required>
+
+            <button type="submit">Send Request</button>
+        </form>
+
+        <h2>Requested Books</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(requests.length> 0) { %>
+                    <% requests.forEach(req=> { %>
+                        <tr>
+                            <td>
+                                <%= req.bookId %>
+                            </td>
+                            <td>
+                                <%= req.bookTitle %>
+                            </td>
+                            <td>
+                                <% if(req.status==="Pending" ) { %>
+                                    <span style="color: orange; font-weight: bold;">⏳ Pending</span>
+                                    <% } else if(req.status==="Approved" ) { %>
+                                        <span style="color: green; font-weight: bold;">✅ Approved</span>
+                                        <% } else if(req.status==="Rejected" ) { %>
+                                            <span style="color: red; font-weight: bold;">❌ Rejected</span>
+                                            <% } %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="3">No requests yet.</td>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+
+        <%- include('../partials/footer') %>

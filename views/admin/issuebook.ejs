@@ -1,0 +1,61 @@
+<%- include('../partials/header', { title: "Issue Book" }) %>
+    <%- include('../partials/navbar', { userType: "admin" }) %>
+
+        <h1>Issue Book to Student</h1>
+
+        <form action="/admin/issue" method="POST">
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" name="studentId" required>
+
+            <label for="bookId">Book ID:</label>
+            <input type="text" id="bookId" name="bookId" required>
+
+            <label for="issueDate">Issue Date:</label>
+            <input type="date" id="issueDate" name="issueDate" required>
+
+            <button type="submit">Confirm Issue</button>
+        </form>
+
+        <h2>Issued Books List</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Issue Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% issuedBooks.forEach(book=> { %>
+                    <tr>
+                        <td>
+                            <%= book.studentId %>
+                        </td>
+                        <td>
+                            <%= book.studentName %>
+                        </td>
+                        <td>
+                            <%= book.bookId %>
+                        </td>
+                        <td>
+                            <%= book.bookTitle %>
+                        </td>
+                        <td>
+                            <%= book.issueDate %>
+                        </td>
+                        <td>
+                            <% if(book.returned) { %>
+                                ✅ Returned
+                                <% } else { %>
+                                    ❌ Not Returned
+                                    <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+        <%- include('../partials/footer') %>

@@ -1,0 +1,45 @@
+<%- include('../partials/header', { title: "Manage Students" }) %>
+    <%- include('../partials/navbar', { userType: "admin" }) %>
+
+        <h1>Students Management</h1>
+
+        <form action="/admin/students/search" method="GET">
+            <input type="text" name="query" placeholder="Search by name or ID..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>All Students</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Total Books Read</th>
+                    <th>Books Currently Issued</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% students.forEach(student=> { %>
+                    <tr>
+                        <td>
+                            <%= student.id %>
+                        </td>
+                        <td>
+                            <%= student.name %>
+                        </td>
+                        <td>
+                            <%= student.class %>
+                        </td>
+                        <td>
+                            <%= student.booksRead %>
+                        </td>
+                        <td>
+                            <%= student.booksIssued.length %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+        <%- include('../partials/footer') %>

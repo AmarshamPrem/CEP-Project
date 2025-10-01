@@ -1,0 +1,17 @@
+<nav>
+    <ul>
+        <% if (userType==="admin" ) { %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin/dashboard">Dashboard</a></li>
+            <li><a href="/admin/books">Books</a></li>
+            <li><a href="/admin/students">Students</a></li>
+            <li><a href="/admin/issue">Issue Book</a></li>
+            <% } else if (userType==="student" ) { %>
+                <li><a href="/">Home</a></li>
+                <li><a href="/student/dashboard">Dashboard</a></li>
+                <li><a href="/student/request">Request Book</a></li>
+                <li><a href="/student/profile">Profile</a></li>
+                <% } %>
+                    <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,12 @@
+<%- include('../partials/header', { title: "Admin Dashboard" }) %>
+    <%- include('../partials/navbar', { userType: "admin" }) %>
+
+        <h1>Welcome <%= admin.name[0] + admin.name.split(" ")[0].slice(1) %>,</h1>
+        <p>Total Books: <%= stats.totalBooks %>
+        </p>
+        <p>Issued Books: <%= stats.totalIssuedBooks %>
+        </p>
+        <p>Students Registered: <%= stats.totalStudents %>
+        </p>
+
+        <%- include('../partials/footer') %>

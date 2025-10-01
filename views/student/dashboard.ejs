@@ -1,0 +1,24 @@
+<%- include('../partials/header', { title: "Student Dashboard" }) %>
+    <%- include('../partials/navbar', { userType: "student" }) %>
+
+        <div class="dashboard-container">
+            <div class="dashboard-card">
+                <h1 class="dashboard-title">Welcome, <%= student.name[0].toUpperCase() + student.name.slice(1) %>!</h1>
+                <div class="dashboard-info">
+                    <div class="dashboard-row"><span class="label">ID:</span> <span>
+                            <%= student.id %>
+                        </span></div>
+                    <div class="dashboard-row"><span class="label">Class:</span> <span>
+                            <%= student.class %>
+                        </span></div>
+                    <div class="dashboard-row"><span class="label">Total Books Read:</span> <span>
+                            <%= student.booksRead %>
+                        </span></div>
+                    <div class="dashboard-row"><span class="label">Books Targeted:</span> <span>
+                            <%= student.targetBooks %>
+                        </span></div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer') %>

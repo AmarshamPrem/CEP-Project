@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+
+    <div class="auth-container">
+        <!-- Tabs -->
+        <div class="auth-tabs">
+            <button class="tab-btn active" onclick="showForm('login')">Login</button>
+            <button class="tab-btn" onclick="showForm('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" action="/login" method="POST" class="auth-form">
+            <h2>Login</h2>
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
+
+            <!-- Role -->
+            <select name="role" required>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" action="/register" method="POST" class="auth-form hidden">
+            <h2>Register</h2>
+            <input type="text" name="name" placeholder="Full Name" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
+
+            <!-- Role -->
+            <select name="role" required>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function showForm(form) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            if (form === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                buttons[0].classList.add('active');
+                buttons[1].classList.remove('active');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                buttons[1].classList.add('active');
+                buttons[0].classList.remove('active');
+            }
+        }
+    </script>
+
+    <%- include('../partials/footer') %>

@@ -1,0 +1,48 @@
+<%- include('../partials/header', { title: "Student Landing" }) %>
+    <%- include('../partials/navbar', { userType: "student" }) %>
+
+        <h1>Welcome, <%= student.name %> 📚</h1>
+
+        <!-- Search + Filter Section -->
+        <div class="filters">
+            <input type="text" id="searchInput" placeholder="Search books by title or author..."
+                onkeyup="filterBooks()">
+
+            <select id="sortSelect" onchange="sortBooks()">
+                <option value="title">Sort by Title</option>
+                <option value="rating">Sort by Rating</option>
+                <option value="sold">Sort by Copies Sold</option>
+                <option value="availability">Sort by Availability</option>
+            </select>
+        </div>
+
+        <!-- Books Container -->
+        <div id="booksContainer" class="book-grid">
+            <% books.forEach(book=> { %>
+                <div class="book-card" data-title="<%= book.title.toLowerCase() %>"
+                    data-author="<%= book.author.toLowerCase() %>" data-rating="<%= book.rating %>"
+                    data-sold="<%= book.copiesSold %>" data-available="<%= book.available ? 1 : 0 %>">
+                    <h3>
+                        <%= book.title %>
+                    </h3>
+                    <p><strong>Author:</strong>
+                        <%= book.author %>
+                    </p>
+                    <p><strong>Rating:</strong> ⭐ <%= book.rating %>/5</p>
+                    <p><strong>Copies Sold:</strong>
+                        <%= book.copiesSold %>
+                    </p>
+                    <p>
+                        <strong>Status:</strong>
+                        <% if(book.available) { %>
+                            <span class="status available">✅ Available</span>
+                            <% } else { %>
+                                <span class="status unavailable">❌ Unavailable</span>
+                                <% } %>
+                    </p>
+                    <button onclick="requestBook('<%= book.id %>')">Request</button>
+                </div>
+                <% }) %>
+        </div>
+
+        <%- include('../partials/footer') %>
